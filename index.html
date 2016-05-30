@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/styles.css">
     <title>FizzBuzz</title>
 </head>
 <body>
+    <p class="instructions">To play, enter a positive number between 15 and 1500.</p>
+    <form id="inputNumber">
+        <input type="text" value placeholder="Enter a positive number">
+        <button class="btn" type="submit">Evaluate</button>
+    </form>
+    <div class="result"><p></p></div>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
 </body>
