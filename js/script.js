@@ -5,52 +5,59 @@
 
 $(document).ready( function() {
     // When the button is pressed, clear the container for the printout,
-    // get the input, make sure it's a valid number
+    // get the input, make sure it's a valid number, then perform the test
     var number;
     $('#inputNumber').submit(function(e) {
         $('div.result').empty();
         number = $('#inputNumber input').val();
         e.preventDefault();
         this.reset();
-        number = validateInput(Number(number));
+        validNumber = validateInput(Number(number));
+        if (validNumber) {
+            fizzBuzz(validNumber);
+        }
     });
-});
 
-function validateInput(userNumber) {
-    // Set the warning string to false
-    console.log(warning);
-    var warning = "";
+    function validateInput(userNumber) {
+        // Set the warning string to false
+        var warning = "";
 
-    // If the number is valid, print the analysis and conversion
-    // If not, present some validation messages
-    if ( userNumber >= 15 && userNumber <= 1500 ) {
-        $('div.result p').replaceWith('<p>' + fizzBuzz(userNumber) + '</p>');
-    } else if ( userNumber < 15 ) {
-        warning = "Your number is too low.";
-    } else if ( userNumber > 1500 ) {
-        warning = "Your number is too high.";
-    } else {
-        warning = "Please enter a valid number.";
-    }
-
-    // If a warning message exists, print it to the results container
-    if (warning) {
-        console.log(warning);
-        $('div.result p').replaceWith('<p>' + warning + '</p>');
-    }
-}
-
-// This function takes an integer and performs the 'fizzbuzz' test
-function fizzBuzz(maxInteger) {
-    for (var i=1; i <= maxInteger; i++) {
-        if (i % 3 === 0 && i % 5 === 0) {
-            $('div.result').append('<p>FizzBuzz</p>');
-        } else if (i % 3 === 0) {
-            $('div.result').append('<p>Fizz</p>');
-        } else if (i % 5 === 0) {
-            $('div.result').append('<p>Buzz</p>');
+        // If the number is valid, print the analysis and conversion
+        // If not, present some validation messages
+        if ( userNumber >= 15 && userNumber <= 1500 ) {
+            return userNumber;
+        } else if ( userNumber < 15 ) {
+            warning = "Your number is too low.";
+        } else if ( userNumber > 1500 ) {
+            warning = "Your number is too high.";
         } else {
-            $('div.result').append('<p>' + i + '</p>');
+            warning = "Please enter a valid number.";
+        }
+        printMessage(warning);
+    }
+
+    function printMessage(message) {
+        // If a warning message exists, print it to the results container
+        if (message) {
+            console.log(message);
+            $('div.result').append('<p>' + message + '</p>');
         }
     }
-}
+
+    // This function takes an integer and performs the 'fizzbuzz' test
+    function fizzBuzz(maxInteger) {
+        for (var i=1; i <= maxInteger; i++) {
+            if (i % 3 === 0 && i % 5 === 0) {
+                $('div.result').append('<p>FizzBuzz</p>');
+            } else if (i % 3 === 0) {
+                $('div.result').append('<p>Fizz</p>');
+            } else if (i % 5 === 0) {
+                $('div.result').append('<p>Buzz</p>');
+            } else {
+                $('div.result').append('<p>' + i + '</p>');
+            }
+        }
+    }
+
+});
+
