@@ -9,13 +9,13 @@ $(document).ready( function() {
     var number;
 
     $('#inputNumber').submit(function(e) {
-        // Included this to clear the results container when a new
-        // input value was submitted.
+        // Clear out the results container when the user submits to
+        // prevent previous results from appearing.
         $('div.result').empty();
         number = $('#inputNumber input').val();
         e.preventDefault();
         this.reset();
-        var validNumber = validateInput(Number(number));
+        var validNumber = validateInput(+number);
         if (validNumber) {
             fizzBuzz(validNumber);
         }
@@ -28,6 +28,7 @@ $(document).ready( function() {
         // If the number is valid, print the analysis and conversion
         // If not, present some validation messages.
         if ( userNumber >= 15 && userNumber <= 1500 ) {
+            // Return the number if it's valid.
             return userNumber;
         } else if ( userNumber < 15 ) {
             warning = "Your number is too low.";
@@ -37,28 +38,35 @@ $(document).ready( function() {
             warning = "Please enter a valid number.";
         }
         printMessage(warning);
+        // Return an undefined value if there was an error
+        return;
     }
 
     function printMessage(message) {
         // If a warning message exists, print it to the results container.
         if (message) {
             console.log(message);
+            // Use the append function to add the new paragraph
+            // to the results container.
             $('div.result').append('<p>' + message + '</p>');
         }
     }
 
     // This function takes an integer and performs the 'fizzbuzz' test.
     function fizzBuzz(maxInteger) {
+        var result = null;
         for (var i=1; i <= maxInteger; i++) {
-            if (i % 3 === 0 && i % 5 === 0) {
-                $('div.result').append('<p>FizzBuzz</p>');
+            if (i % 15 === 0) {
+                result = "FizzBuzz";
             } else if (i % 3 === 0) {
-                $('div.result').append('<p>Fizz</p>');
+                result = "Fizz";
             } else if (i % 5 === 0) {
-                $('div.result').append('<p>Buzz</p>');
+                result = "Buzz";
             } else {
-                $('div.result').append('<p>' + i + '</p>');
+                result = i;
             }
+            // Use the append function to add the results to the container.
+            $('div.result').append('<p>' + result + '</p>');
         }
     }
 
