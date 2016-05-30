@@ -1,5 +1,6 @@
 /*
-    This program will print the numbers from 1 to 100, except when the number
+    This program will print a range of numbers starting at 1 and ending
+    at the number between 15 and 1500 input by the user, except when the number
     is divisible by 3 (fizz), 5 (buzz), or both (fizz buzz).
 */
 
