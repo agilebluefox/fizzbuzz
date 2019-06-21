@@ -9,11 +9,11 @@ $(document).ready( function() {
     // get the input, make sure it's a valid number, then perform the test.
     var number;
 
-    $('#inputNumber').submit(function(e) {
+    $('#inputNumber').on('submit', function(e) {
         // Clear out the results container when the user submits to
         // prevent previous results from appearing.
         $('div.result').empty();
-        number = $('#inputNumber input').val();
+        number = $('#number').val();
         e.preventDefault();
         this.reset();
         var validNumber = validateInput(+number);
